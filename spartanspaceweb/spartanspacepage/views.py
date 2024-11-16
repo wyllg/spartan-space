@@ -3,6 +3,10 @@ from django.views.generic import ListView, DetailView, TemplateView
 from .models import Post, Task
 
 # Renders the HTML file of the certain URL
+
+def index(request):
+    return render(request, 'index.html')
+
 class HomeView(TemplateView):
     template_name = 'home.html'
 
