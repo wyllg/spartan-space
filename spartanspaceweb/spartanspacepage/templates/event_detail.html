@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
 <h1>Event Details</h1>
 
 <h1>{{ post.title }}</h1>
@@ -9,4 +13,7 @@
 {{post.body}}
 
 <br/><br/>
-<a href="{% url 'events' %}">Back</a>
+<a href="{% url 'events' %}" class = "btn btn-secondary">Back</a>
+
+{% endblock %}
+

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
-from .models import Post
+from .models import Post, Task
 
 # Renders the HTML file of the certain URL
 class HomeView(TemplateView):
@@ -13,3 +13,7 @@ class EventsView(ListView):
 class EventDetailView(DetailView):
     model = Post
     template_name = 'event_detail.html'
+
+class TaskView(ListView):
+    model = Task
+    template_name = 'task.html'

@@ -11,9 +11,8 @@ class Post(models.Model):
         # Allows to view the title and author of the blog from the admin page
         return self.title + ' | ' + str(self.author)
     
-
-# Need to migrate????
-class Tasks(models.Model):
+# Migrated
+class Task(models.Model):
     title = models.CharField(max_length = 225)
     body = models.TextField()
 
