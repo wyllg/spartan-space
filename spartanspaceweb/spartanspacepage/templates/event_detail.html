@@ -1,0 +1,12 @@
+<h1>Event Details</h1>
+
+<h1>{{ post.title }}</h1>
+<small>By: {{ post.author.first_name }}
+    {{ post.author.last_name }} <br/>
+</small>
+<hr>
+<br/>
+{{post.body}}
+
+<br/><br/>
+<a href="{% url 'events' %}">Back</a>
