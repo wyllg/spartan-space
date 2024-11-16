@@ -15,6 +15,7 @@ class Post(models.Model):
 # Need to migrate????
 class Tasks(models.Model):
     title = models.CharField(max_length = 225)
+    author = models.ForeignKey(User, on_delete = models.CASCADE)
     body = models.TextField()
 
     def __str__(self):
