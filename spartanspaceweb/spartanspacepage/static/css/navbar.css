@@ -1,0 +1,26 @@
+.navbar_body {
+    background-color: #333333; /* Light red background */
+    padding: 10px 0; /* Padding for the header */
+}
+
+nav ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: center; /* Center the items */
+}
+
+nav li {
+    margin: 0 15px; /* Spacing between items */
+}
+
+nav a {
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+}
+
+nav a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

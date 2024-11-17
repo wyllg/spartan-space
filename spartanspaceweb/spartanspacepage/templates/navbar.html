@@ -1,0 +1,21 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css", 
+    href="{% static 'css/navbar.css' %}">
+</head>
+
+<header class = 'navbar_body'>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'events' %}">Campus Events</a></li>
+            <li><a href="{% url 'task' %}">Tasks</a></li>
+        </ul>
+    </nav>
+</header>
+
+</body>
+</html>
