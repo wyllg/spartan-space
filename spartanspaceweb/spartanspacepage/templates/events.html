@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 
+{% block title %} Campus Events {% endblock %}
+
+{% load static %}
+
 {% block content %}
 
-<h1>Campus Events</h1>
+<head>
+    <title>Campus Events</title>
+    <link rel="stylesheet" type="text/css", 
+    href="{% static 'css/styles.css' %}">
+</head>
 
-<h1> Post </h1>
+<body class = 'page_body'></body>
+    <h1>Campus Events</h1>
 
-<ul>
-{% for post in object_list %}
-    <li><a href="{% url 'event_detail' post.pk %}">{{ post.title }}</a> - {{ post.author }} <br/>
-    {{ post.body }}</li>
+    <h1> Post </h1>
 
-{% endfor %}
-</ul>
+    <ul>
+    {% for post in object_list %}
+        <li><a href="{% url 'event_detail' post.pk %}">{{ post.title }}</a> - {{ post.organization }} <br/> {{ post.event_date }} <br/> 
+        {{ post.overview }}</li>
+
+    {% endfor %}
+    </ul>
+</body>
 
 {% endblock %}
 

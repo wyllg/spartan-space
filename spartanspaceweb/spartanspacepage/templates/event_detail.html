@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
+{% block title %} {{ post.title }} {% endblock %}
+
+{% load static %}
 
 {% block content %}
- 
+
+<head>
+    <link rel="stylesheet" type="text/css", 
+    href="{% static 'css/styles.css' %}">
+</head>
+
 <h1>Event Details</h1>
 
 <h1>{{ post.title }}</h1>
@@ -9,10 +17,10 @@
     {{ post.author.last_name }} <br/>
 </small>
 <hr>
+{{ post.event_date }}
 <br/>
 {{post.body}}
-
-<br/><br/>
+<br/>
 <a href="{% url 'events' %}" class = "btn btn-secondary">Back</a>
 
 {% endblock %}

@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from .models import Post, Task
 
-# Renders the HTML file of the certain URL
+# Renders the HTML file of the certain URL pulled from teh admin page
 
-def index(request):
-    return render(request, 'index.html')
+# def index(request):
+#     return render(request, 'base.html')
 
 class HomeView(TemplateView):
     template_name = 'home.html'

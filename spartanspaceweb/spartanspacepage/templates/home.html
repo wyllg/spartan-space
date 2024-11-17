@@ -4,48 +4,29 @@
 
 {% block content %}
 
-<h1>Homepage</h1>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Homepage</title>
     <link rel="stylesheet" type="text/css", 
     href="{% static 'css/styles.css' %}">
 </head>
-<body>
-    <header>
-        <h1>Welcome to My Homepage</h1>
-    </header>
+
+<body class = 'page_body'>
+
+    <h0>spartanspace.</h0>
+    <p>
+        Your go-to platform for room schedules and campus events at BatStateU. Easily check room availability, 
+        stay updated on upcoming events, and keep track of your schedule—all in one place. Stay connected and 
+        make the most of your campus experience with Spartan Space.
+    </p>
+    <div class = 'home_div'>
+        <ul>
+            <li><a href="{% url 'events' %}" class="button_primary">Campus Events</a></li>
+            <li><a href="{% url 'task' %}" class="button_primary">Personal Task</a></li>
+        </ul>
+    </div>
     
-    <main>
-        <section id="home">
-            <h2>Home</h2>
-            <p>This is a sample homepage created using HTML and CSS.</p>
-        </section>
-        
-        <section id="about">
-            <h2>About</h2>
-            <p>Here you can learn more about what we do.</p>
-        </section>
-        
-        <section id="services">
-            <h2>Services</h2>
-            <p>Discover the services we offer to our clients.</p>
-        </section>
-        
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Get in touch with us for more information.</p>
-        </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2023 My Homepage. All rights reserved.</p>
-    </footer>
+    <br/>
+
 </body>
-</html>
 
 {% endblock %}
