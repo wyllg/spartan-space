@@ -20,6 +20,9 @@
     <br/>
     <div>{{ post.body }}</div>
     <br/>
+    {% if post.header_image %}
+        <img src="{{ post.header_image.url }}">
+    {% endif %}
     <a href="{% url 'events' %}" class="btn btn-secondary">Back</a>
 </body>
 

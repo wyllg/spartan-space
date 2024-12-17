@@ -34,6 +34,10 @@
                 </a>
                 <div>Event Date: {{ post.event_date }}</div>
                 <div>{{ post.overview }}</div>
+                <br>
+                {% if post.header_image %}
+                <img src="{{ post.header_image.url }}">
+                {% endif %}
             </li>
         {% empty %}
             <li>No events available.</li>
