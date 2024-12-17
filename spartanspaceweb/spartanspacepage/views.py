@@ -20,6 +20,11 @@ class EventDetailView(DetailView):
     model = Post
     template_name = 'event_detail.html'
 
+class AddPostView(CreateView):
+    model = Post
+    template_name = 'add_post.html'
+    fields = '__all__'
+
 class TaskView(ListView):
     model = Task
     template_name = 'task.html'

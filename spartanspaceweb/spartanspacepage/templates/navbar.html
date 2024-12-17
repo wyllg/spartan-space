@@ -23,6 +23,11 @@
                 <!-- Profile Link -->
                 <li><a href="{% url 'profile' username=user.username %}" class="navbar-link">Profile</a></li>
 
+                {% if user.is_staff %}
+                    <!-- Add Post Link for Staff -->
+                    <li><a href="{% url 'add_post' %}" class="navbar-link">Add Post</a></li>
+                {% endif %}
+
                 <!-- Logout Form Styled as Link -->
                 <li>
                     <form action="{% url 'logout' %}" method="post" style="display:inline;">

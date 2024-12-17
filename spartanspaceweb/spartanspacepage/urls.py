@@ -1,6 +1,6 @@
 from django.urls import path
 # from . import views
-from .views import HomeView, EventsView, EventDetailView, TaskView 
+from .views import HomeView, EventsView, EventDetailView, TaskView, AddPostView
 
 # Creates the URLs
 urlpatterns = [
@@ -9,5 +9,6 @@ urlpatterns = [
     # Makes it so the specific event opens in a new unique link/ID number
     path('event/<int:pk>', EventDetailView.as_view(), name="event_detail"),
     path('task', TaskView.as_view(), name="task"),
+    path('add_post/', AddPostView.as_view(), name='add_post'),
 
 ]
