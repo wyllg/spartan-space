@@ -1,6 +1,5 @@
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from .models import Post, Task
-
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 
@@ -20,10 +19,6 @@ class EventDetailView(DetailView):
     model = Post
     template_name = 'event_detail.html'
 
-class AddPostView(CreateView):
-    model = Post
-    template_name = 'add_post.html'
-    fields = '__all__'
 
 class TaskView(ListView):
     model = Task
