@@ -1,11 +1,9 @@
-/* navbar.css */
-
 body {
     margin: 0; /* Remove default margin */
 }
 
 .navbar_body {
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: #c8b1b1; /* Light gray background */
     padding: 10px 0; /* Padding for the navbar */
 }
 
@@ -29,6 +27,7 @@ body {
     text-decoration: none; /* Remove underline from links */
     color: #333; /* Dark text color */
     font-weight: bold; /* Bold text */
+    font-size: 16px; /* Set font size for navbar links */
     transition: color 0.3s; /* Smooth color transition */
 }
 
@@ -36,15 +35,24 @@ body {
     color: #007BFF; /* Change color on hover */
 }
 
+/* Consistent styling for the logout button */
 .logout-button {
     background: none; /* Remove button background */
     border: none; /* Remove button border */
     color: #333; /* Match link color */
-    cursor: pointer; /* Change cursor to pointer */
     font-weight: bold; /* Bold text */
+    font-size: 16px; /* Set font size to match navbar links */
+    cursor: pointer; /* Change cursor to pointer */
+    padding: 0; /* Remove padding */
+    text-decoration: none; /* Remove underline */
     transition: color 0.3s; /* Smooth color transition */
 }
 
 .logout-button:hover {
     color: #007BFF; /* Change color on hover */
+}
+
+/* Optionally, add a margin to separate logout button from other links */
+.logout-button {
+    margin-left: 15px; /* Adjust margin if needed */
 }
