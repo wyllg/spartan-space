@@ -1,26 +1,50 @@
-.navbar_body {
-    background-color: #333333; /* Light red background */
-    padding: 10px 0; /* Padding for the header */
+/* navbar.css */
+
+body {
+    margin: 0; /* Remove default margin */
 }
 
-nav ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+.navbar_body {
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 10px 0; /* Padding for the navbar */
+}
+
+.navbar {
     display: flex; /* Use flexbox for horizontal layout */
     justify-content: center; /* Center the items */
 }
 
-nav li {
-    margin: 0 15px; /* Spacing between items */
+.navbar ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Display items in a row */
 }
 
-nav a {
-    color: white; /* White text color */
-    text-decoration: none; /* Remove underline */
+.navbar li {
+    margin: 0 15px; /* Space between items */
+}
+
+.navbar-link {
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Dark text color */
     font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition */
 }
 
-nav a:hover {
-    text-decoration: underline; /* Underline on hover */
+.navbar-link:hover {
+    color: #007BFF; /* Change color on hover */
+}
+
+.logout-button {
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    color: #333; /* Match link color */
+    cursor: pointer; /* Change cursor to pointer */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.logout-button:hover {
+    color: #007BFF; /* Change color on hover */
 }

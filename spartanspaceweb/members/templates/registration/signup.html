@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css", 
+    href="{% static 'css/styles.css' %}?v=1">
+</head>
+
+<body class="page_body">
+
+    <h1>Sign Up</h1>
+    <br/><br/>
+
+    <div class="form-group">
+        <h3>Sign Up</h3>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            
+            <div>
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            
+            <div>
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+            </div>
+
+            <div>
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+            </div>
+            <div>
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+
+            <div>
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+            </div>
+
+            <div>
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+            </div>
+
+            <div>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <p class="text-danger">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div>
+                <p>Already have an account? <a href="{% url 'login' %}">Login</a> </p>
+            </div>
+
+            <br/>
+            <input type="submit" class="btn btn-primary" value="Register Account">
+        </form>
+    </div>
+
+</body>
+
+{% endblock %}

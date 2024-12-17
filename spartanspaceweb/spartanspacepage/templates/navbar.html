@@ -1,21 +1,44 @@
 {% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css", 
-    href="{% static 'css/navbar.css' %}">
+    <title>Spartan Space</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}?v=1">
 </head>
 
-<header class = 'navbar_body'>
-    <nav>
+<body>
+
+<header class="navbar_body">
+    <nav class="navbar">
         <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'events' %}">Campus Events</a></li>
-            <li><a href="{% url 'task' %}">Tasks</a></li>
+            <li><a href="{% url 'home' %}" class="navbar-link">Home</a></li>
+            <li><a href="{% url 'events' %}" class="navbar-link">Campus Events</a></li>
+            <li><a href="{% url 'task' %}" class="navbar-link">Tasks</a></li>
+
+            {% if user.is_authenticated %}
+                <!-- Profile Link -->
+                <li><a href="{% url 'profile' username=user.username %}" class="navbar-link">Profile</a></li>
+
+                <!-- Logout Form Styled as Link -->
+                <li>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="navbar-link logout-button">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <!-- Sign Up and Login Links -->
+                <li><a href="{% url 'signup' %}" class="navbar-link">Sign Up</a></li>
+                <li><a href="{% url 'login' %}" class="navbar-link">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>
 
 </body>
+
 </html>

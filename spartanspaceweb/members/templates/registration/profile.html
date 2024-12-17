@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css", 
+    href="{% static 'css/styles.css' %}?v=1">
+</head>
+
+<body class="page_body">
+    <h1>Welcome, {{ user_profile.first_name }} {{ user_profile.last_name }}!</h1>
+    <p>Username: {{ user_profile.username }}</p>
+    <p>Email: {{ user_profile.email }}</p>
+
+    <!-- Logout link styled as a button -->
+    <a href="{% url 'logout' %}" class="button_primary">Logout</a>
+</body>
+{% endblock %}

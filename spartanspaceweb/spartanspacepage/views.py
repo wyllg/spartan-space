@@ -1,6 +1,8 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from .models import Post, Task
+
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
 
 # Renders the HTML file of the certain URL pulled from teh admin page
 
@@ -21,3 +23,7 @@ class EventDetailView(DetailView):
 class TaskView(ListView):
     model = Task
     template_name = 'task.html'
+
+def user_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    return render(request, 'profile.html', {'user': user})

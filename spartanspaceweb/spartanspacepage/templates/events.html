@@ -8,24 +8,27 @@
 
 <head>
     <title>Campus Events</title>
-    <link rel="stylesheet" type="text/css", 
-    href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}?v=1">
 </head>
 
-<body class = 'page_body'></body>
+<body class='page_body'>
     <h1>Campus Events</h1>
 
-    <h1> Post </h1>
+    <h2>Post</h2>
 
     <ul>
-    {% for post in object_list %}
-        <li><a href="{% url 'event_detail' post.pk %}">{{ post.title }}</a> - {{ post.organization }} <br/> {{ post.event_date }} <br/> 
-        {{ post.overview }}</li>
-
-    {% endfor %}
+        {% for post in object_list %}
+            <li>
+                <a href="{% url 'event_detail' post.pk %}">{{ post.title }}</a> - 
+                <!-- Author's name is now a link to their profile page -->
+                <a href="{% url 'profile' username=post.author.username %}">
+                    {{ post.author.first_name }} {{ post.author.last_name }}
+                </a>
+                <div>Event Date: {{ post.event_date }}</div>
+                <div>{{ post.overview }}</div>
+            </li>
+        {% endfor %}
     </ul>
 </body>
 
 {% endblock %}
-
-

@@ -7,21 +7,21 @@
 
 <head>
     <link rel="stylesheet" type="text/css", 
-    href="{% static 'css/styles.css' %}">
+    href="{% static 'css/styles.css' %}?v=1">
 </head>
 
-<h1>Event Details</h1>
+<body class="page_body">
+    <h1>Event Details</h1>
 
-<h1>{{ post.title }}</h1>
-<small>By: {{ post.author.first_name }}
-    {{ post.author.last_name }} <br/>
-</small>
-<hr>
-{{ post.event_date }}
-<br/>
-{{post.body}}
-<br/>
-<a href="{% url 'events' %}" class = "btn btn-secondary">Back</a>
+    <h1>{{ post.title }}</h1>
+    <small>By: {{ post.author.first_name }} {{ post.author.last_name }} <br/></small>
+    <hr>
+    <div>{{ post.event_date }}</div>
+    <br/>
+    <div>{{ post.body }}</div>
+    <br/>
+    <a href="{% url 'events' %}" class="btn btn-secondary">Back</a>
+</body>
 
 {% endblock %}
 
