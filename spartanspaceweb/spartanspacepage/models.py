@@ -8,6 +8,7 @@ class Post(models.Model):
     overview = models.TextField(max_length=1000)
     event_date = models.DateTimeField()
     body = models.TextField()
+    header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     
 
     def __str__(self):

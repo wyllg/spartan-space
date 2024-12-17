@@ -14,19 +14,29 @@
 <body class='page_body'>
     <h1>Campus Events</h1>
 
-    <h2>Post</h2>
+    <h2>Sort By:</h2>
+    <form method="GET" action="">
+        <select name="order_by" onchange="this.form.submit()">
+            <option value="event_date" {% if request.GET.order_by == 'event_date' %}selected{% endif %}>Event Date</option>
+            <option value="author" {% if request.GET.order_by == 'author' %}selected{% endif %}>Author</option>
+            <option value="name" {% if request.GET.order_by == 'name' %}selected{% endif %}>Name</option>
+        </select>
+    </form>
+
+    <h2>Posts</h2>
 
     <ul>
         {% for post in object_list %}
             <li>
                 <a href="{% url 'event_detail' post.pk %}">{{ post.title }}</a> - 
-                <!-- Author's name is now a link to their profile page -->
                 <a href="{% url 'profile' username=post.author.username %}">
                     {{ post.author.first_name }} {{ post.author.last_name }}
                 </a>
                 <div>Event Date: {{ post.event_date }}</div>
                 <div>{{ post.overview }}</div>
             </li>
+        {% empty %}
+            <li>No events available.</li>
         {% endfor %}
     </ul>
 </body>
