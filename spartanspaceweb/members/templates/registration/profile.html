@@ -12,8 +12,12 @@
     <h1>{{ user_profile.first_name }} {{ user_profile.last_name }}</h1>
     <p>Username: {{ user_profile.username }}</p>
     <p>Email: {{ user_profile.email }}</p>
+    {% if user_profile.profile_picture.url %}
+    <img src="{{ user_profile.profile_picture.url }}">
+    {% endif %}
 
     <!-- Logout link styled as a button -->
     <a href="{% url 'logout' %}" class="button_primary">Logout</a>
+    <br>
 </body>
 {% endblock %}

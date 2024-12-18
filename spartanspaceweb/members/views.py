@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy, path
 from django.views import generic
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import UserChangeForm
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
@@ -10,7 +11,7 @@ class UserSignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
-
+        
 class UserLoginView(LoginView):
     template_name = 'registration/login.html'
     redirect_authenticated_user = True

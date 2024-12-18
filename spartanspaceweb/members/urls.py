@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserSignUpView, UserLoginView, UserProfileView, user_profile
+from .views import UserSignUpView, UserLoginView, UserProfileView
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [

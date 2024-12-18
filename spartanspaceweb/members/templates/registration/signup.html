@@ -49,6 +49,11 @@
             </div>
 
             <div>
+                {{ form.profile_picture.label_tag }}
+                {{ form.profile_picture}}
+            </div>
+
+            <div>
                 {% for field in form %}
                     {% for error in field.errors %}
                         <p class="text-danger">{{ error }}</p>
