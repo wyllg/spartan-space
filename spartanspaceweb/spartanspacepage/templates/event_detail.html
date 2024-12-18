@@ -18,7 +18,7 @@
     <hr>
     <div>{{ post.event_date }}</div>
     <br/>
-    <div>{{ post.body }}</div>
+    <div>{{ post.body|safe }}</div>
     <br/>
     {% if post.header_image %}
         <img src="{{ post.header_image.url }}">

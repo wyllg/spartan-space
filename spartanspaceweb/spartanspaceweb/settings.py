@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'spartanspacepage',
     'members',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
