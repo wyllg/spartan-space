@@ -1,0 +1,174 @@
+/* General body styles */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Page body class */
+.page_body {
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+    border-radius: 12px; /* Rounded corners for the page */
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 2.5em;
+    color: #b04d4d;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center; /* Center align the main heading */
+}
+
+/* Event image styles */
+.event-image {
+    width: 90%;
+    max-height: 250px; /* Set a maximum height for the image */
+    overflow: hidden;
+    border-radius: 12px; /* Round corners for the image container */
+    margin: 20px auto; /* Center the image with auto margins */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex; /* Use flexbox to center the image */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.event-image img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the area while maintaining aspect ratio */
+    border-radius: 12px; /* Round corners for the image */
+}
+
+/* Event details */
+.event-details {
+    padding: 20px;
+    background-color: #f7f7f7; /* Light background for details */
+    border-radius: 8px; /* Rounded corners for details section */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 20px; /* Space below the details section */
+}
+
+/* Subheading styles */
+.event-details h3 {
+    font-size: 1.8em; /* Slightly larger for subheadings */
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border-bottom: 2px solid #b04d4d; /* Underline effect for subheadings */
+    padding-bottom: 5px; /* Space between text and underline */
+}
+
+/* Paragraph styles */
+.event-details p {
+    font-size: 1em;
+    color: #555; /* Darker gray for better readability */
+    margin-bottom: 15px; /* Increased margin for better spacing */
+    line-height: 1.6; /* Improved line height for readability */
+}
+
+/* Link styles */
+.event-details a {
+    color: #b04d4d;
+    text-decoration: none;
+    font-weight: bold; /* Make links stand out */
+}
+
+.event-details a:hover {
+    color: #d9534f; /* Darker shade on hover */
+    text-decoration: underline; /* Underline on hover for emphasis */
+}
+
+/* Button styles */
+.btn-secondary {
+    background-color: #b04d4d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+    display: inline-block; /* Ensure it behaves like a button */
+    margin-top: 20px; /* Space above the button */
+    font-size: 1em; /* Consistent font size */
+}
+
+.btn-secondary:hover {
+    background-color: #d9534f; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.post-body-container {
+    padding: 20px; /* Padding around the container */
+    background-color: #f7f7f7; /* Light background for the post body */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 20px auto; /* Center the container with auto margins */
+    max-width: 800px; /* Limit the width for better readability */
+}
+
+/* Post body content styles */
+.post-body-content {
+    font-size: 1em; /* Consistent font size */
+    color: #555; /* Darker gray for better readability */
+    line-height: 1.6; /* Improved line height for readability */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .post-body-container {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .post-body-content {
+        font-size: 0.95em; /* Slightly smaller font size on mobile */
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .event-image {
+        margin-bottom: 15px; /* Adjust margin for smaller screens */
+    }
+
+    .event-details {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 2em; /* Smaller heading on mobile */
+    }
+
+    .event-details h3 {
+        font-size: 1.5em; /* Smaller subheading on mobile */
+    }
+}
+
+.post-author {
+    font-size: 1em; /* Consistent font size */
+    color: #777; /* Lighter gray for author text */
+    text-align: center; /* Center align the author text */
+    display: block; /* Ensure it behaves like a block element */
+    margin: 0 auto; /* Center the block element */
+    margin-bottom: 10px; /* Space below the author text */
+}
+/* Divider styles */
+.divider {
+    border: none; /* Remove default border */
+    border-top: 1px solid #ccc; /* Light gray line for the divider */
+    margin: 20px 0; /* Space above and below the divider */
+}
+
+/* Event date styles */
+.event-date {
+    font-size: 1.1em; /* Slightly larger font size for the date */
+    color: #555; /* Darker gray for better readability */
+    text-align: center; /* Center align the event date */
+    margin-bottom: 20px; /* Space below the event date */
+}

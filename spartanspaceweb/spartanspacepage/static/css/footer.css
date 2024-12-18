@@ -1,4 +1,61 @@
-footer {
-    background-color: #af4f4f;
-    padding: 10px,
+/* General footer styles */
+.footer {
+    background-color: #b04d4d;  /* Muted red background */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;  /* Correct padding syntax */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    border-radius: 20px; /* Rounded corners for footer */
+    margin-top: 20px; /* Optional: Space between footer and content */
+    overflow: hidden; /* Ensures child elements don't overflow */
+}
+
+/* Footer content styles */
+.footer-content {
+    margin-bottom: 20px;
+}
+
+.footer-content p {
+    font-size: 1.1em;
+    margin: 5px 0;
+    color: #e3e3e3;  /* Light gray text for contrast */
+}
+
+/* Social media icons container */
+.social-icons {
+    margin-top: 10px;
+}
+
+/* Styling for social media icons */
+.social-icons a {
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.5em;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for social icons */
+.social-icons a:hover {
+    color: #f1c40f; /* Change to a gold color on hover */
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 600px) {
+    .social-icons a {
+        font-size: 1.3em;
+        margin: 0 10px;
+    }
+
+    .footer-content p {
+        font-size: 1em;
+    }
+}
+
+/* Global body styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }

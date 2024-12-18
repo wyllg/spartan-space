@@ -8,10 +8,10 @@
 
 <head>
     <title>Campus Events</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}?v=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 
-<body class='page_body'>
+<body class="page_body">
     <h1>Campus Events</h1>
 
     <h2>Sort By:</h2>
@@ -25,24 +25,29 @@
 
     <h2>Posts</h2>
 
-    <ul>
+    <div class="event-gallery">
         {% for post in object_list %}
-            <li>
-                <a href="{% url 'event_detail' post.pk %}">{{ post.title }}</a> - 
-                <a href="{% url 'profile' username=post.author.username %}">
-                    {{ post.author.first_name }} {{ post.author.last_name }}
+            <div class="event-item">
+                <a href="{% url 'event_detail' post.pk %}" class="event-link">
+                    <div class="event-image">
+                        {% if post.header_image %}
+                            <img src="{{ post.header_image.url }}" alt="{{ post.title }}">
+                        {% else %}
+                            <div class="no-image">No Image Available</div>
+                        {% endif %}
+                    </div>
+                    <div class="event-details">
+                        <h3>{{ post.title }}</h3>
+                        <p><a href="{% url 'profile' username=post.author.username %}">{{ post.author.first_name }} {{ post.author.last_name }}</a></p>
+                        <p>Event Date: {{ post.event_date }}</p>
+                        <p>{{ post.overview }}</p>
+                    </div>
                 </a>
-                <div>Event Date: {{ post.event_date }}</div>
-                <div>{{ post.overview }}</div>
-                <br>
-                {% if post.header_image %}
-                <img src="{{ post.header_image.url }}">
-                {% endif %}
-            </li>
+            </div>
         {% empty %}
-            <li>No events available.</li>
+            <p>No events available.</p>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 
 {% endblock %}

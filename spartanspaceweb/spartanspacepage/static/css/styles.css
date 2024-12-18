@@ -1,23 +1,166 @@
-/* styles.css */
-
 /* General body styles */
 body {
-    margin: 0; /* Remove default margin */
-    font-family: Arial, sans-serif; /* Set a default font */
-    line-height: 1.6; /* Improve readability */
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 /* Page body class */
 .page_body {
-    background-color: #ffffff; /* White background for the page */
-    padding: 20px; /* Padding around the content */
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+    border-radius: 12px; /* Rounded corners for the page */
+    margin: 20px auto;
+    max-width: 1200px;
 }
 
-/* Additional styles for the page content */
-h1, h2, h3 {
-    color: #333; /* Dark color for headings */
+/* Heading styles */
+h1 {
+    font-size: 2.5em;
+    color: #b04d4d;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
-p {
-    color: #666; /* Gray color for paragraph text */
+h2 {
+    font-size: 1.8em;
+    color: #b04d4d;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.intro-text {
+    font-size: 1.1em; /* Slightly larger font size for the intro text */
+    color: #555; /* Darker gray for better readability */
+    margin: 20px auto 30px; /* Space above, auto for left/right, and space below */
+    text-align: center; /* Center align the text */
+    max-width: 800px; /* Optional: Limit the width for better readability */
+}
+
+.site-title {
+    text-align: center; /* Center align the text */
+    font-size: 2.5em; /* Adjust font size as needed */
+    color: #b04d4d;; /* Darker color for better visibility */
+    margin: 20px 0; /* Space above and below the title */
+}
+
+.button-list {
+    list-style-type: none; /* Remove default list styling */
+    padding: 5; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox to align items in a row */
+    justify-content: center; /* Center the buttons horizontally */
+}
+
+.button-list li {
+    margin: 0 10px; /* Add space between buttons */
+}
+
+/* Button styles */
+.button_primary {
+    background-color: #b04d4d; /* Button background color */
+    color: white; /* Button text color */
+    padding: 20px 20px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline from links */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.button_primary:hover {
+    background-color: #d9534f; /* Darker shade on hover */
+}
+
+/* Event Gallery Styles */
+.event-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Event item card */
+.event-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Rounded corners for event items */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.event-item:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.event-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Event image styles */
+.event-image {
+    width: 100%;
+    height: 200px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px; /* Round the top corners of the image */
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transition: opacity 0.3s ease;
+}
+
+/* No image placeholder */
+.no-image {
+    text-align: center;
+    line-height: 200px;
+    color: #777;
+    font-size: 16px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* Event details */
+.event-details {
+    padding: 20px;
+}
+
+.event-details h3 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.event-details p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.event-details a {
+    color: #b04d4d;
+    text-decoration: none;
+}
+
+.event-details a:hover {
+    color: #d9534f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .event-gallery {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
 }

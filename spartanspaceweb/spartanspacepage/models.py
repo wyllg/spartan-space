@@ -11,7 +11,6 @@ class Post(models.Model):
     body = RichTextField(blank=True, null=True)
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     
-
     def __str__(self):
         # Allows to view the title and author of the blog from the admin page
         return self.title + ' | ' + str(self.author)

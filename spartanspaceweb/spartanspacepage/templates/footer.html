@@ -1,14 +1,24 @@
-{% load static%}
+{% load static %}
 
 <head>
-    <link rel="stylesheet" type="text/css", 
-    href="{% static 'css/footer.css' %}?v=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<footer>
-    <p>&copy; 2023 spartanspace. All rights reserved.</p>
-    <p>Contact us: info@yourorganization.com</p>
-</footer>
+<body>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 Spartan Space. All rights reserved.</p>
+            <p>Contact us: info@spartanspace.com</p>
+        </div>
 
+        <div class="social-icons">
+            <a href="https://www.facebook.com/BatStateUTheNEU" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://twitter.com/batstateutheneu" class="fa fa-twitter" target="_blank"></a>
+            <a href="https://www.instagram.com/batstateu_/" class="fa fa-instagram" target="_blank"></a>
+            <a href="https://www.youtube.com/@BatStateUTheNEU" class="fa fa-youtube" target="_blank"></a>
+        </div>
+    </footer>
 </body>
 </html>

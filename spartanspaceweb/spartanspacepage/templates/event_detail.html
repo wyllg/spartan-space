@@ -6,25 +6,31 @@
 {% block content %}
 
 <head>
-    <link rel="stylesheet" type="text/css", 
-    href="{% static 'css/styles.css' %}?v=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/event_details.css' %}">
 </head>
 
 <body class="page_body">
-    <h1>Event Details</h1>
+
+    {% if post.header_image %}
+        <div class="event-image">
+            <img src="{{ post.header_image.url }}" alt="{{ post.title }}">
+        </div>
+    {% endif %}
 
     <h1>{{ post.title }}</h1>
-    <small>By: {{ post.author.first_name }} {{ post.author.last_name }} <br/></small>
-    <hr>
-    <div>{{ post.event_date }}</div>
+    <small class="post-author">By: {{ post.author.first_name }} {{ post.author.last_name }}</small>
+    <hr class="divider">
+    <div class="event-date">{{ post.event_date }}</div>
+
+    <!-- Container for the post body -->
+    <div class="post-body-container">
+        <div class="post-body-content">
+            {{ post.body|safe }}
+        </div>
+    </div>
     <br/>
-    <div>{{ post.body|safe }}</div>
-    <br/>
-    {% if post.header_image %}
-        <img src="{{ post.header_image.url }}">
-    {% endif %}
+
     <a href="{% url 'events' %}" class="btn btn-secondary">Back</a>
 </body>
 
 {% endblock %}
-

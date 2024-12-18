@@ -4,39 +4,43 @@
 {% block content %}
 
 <head>
-    <link rel="stylesheet" type="text/css", 
-    href="{% static 'css/styles.css' %}?v=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
 </head>
 
 <body class="page_body">
 
-    <h1>Login</h1>
-    <br/><br/>
+    <div class="signup-container">
+        <h1 class="signup-title">Login</h1>
 
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            
-            {% if form.non_field_errors %}
-                <div class="alert alert-danger">
-                    {{ form.non_field_errors }}
+        <div class="form-group">
+            <h3>Welcome Back</h3>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                
+                <div class="input-group">
+                    <label for="id_username">{{ form.username.label }}</label>
+                    {{ form.username }}
                 </div>
-            {% endif %}
-            
-            <div>
-                {{ form.username.label_tag }}
-                {{ form.username }}
-            </div>
-            <div>
-                {{ form.password.label_tag }}
-                {{ form.password }}
-            </div>
-            <div>
-                <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+                
+                <div class="input-group">
+                    <label for="id_password">Password</label>
+                    {{ form.password }}
+                </div>
+
+                <div class="error-messages">
+                    {% if form.non_field_errors %}
+                        <p class="text-danger">{{ form.non_field_errors }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="signup-footer">
+                    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Login">
+            </form>
+        </div>
     </div>
 
 </body>
