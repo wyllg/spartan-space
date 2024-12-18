@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
 
+# Views to render the database to html files
 
 class UserSignUpView(generic.CreateView):
     form_class = CustomUserCreationForm

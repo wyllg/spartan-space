@@ -5,6 +5,7 @@ from.models import Post, Task
 # admin.site.register(Post)
 admin.site.register(Task)
 
+# Allows posts to be ordered and filtered in the admin page
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'event_date')
