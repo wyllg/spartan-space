@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse
 from ckeditor.fields import RichTextField
 
 # Models for Events Post, contains post fields
@@ -14,7 +13,7 @@ class Post(models.Model):
     
     def __str__(self):
         # Allows to view the title and author of the blog from the admin page
-        return self.title + ' | ' + str(self.author)
+        return f"{self.title} | {self.author}"
     
     
 class Task(models.Model):
@@ -24,5 +23,5 @@ class Task(models.Model):
 
     def __str__(self):
         # Allows to view the title and author of the blog from the admin page
-        return self.title + ' | ' + str(self.author)
+        return f"{self.title} | {self.author}"
 
