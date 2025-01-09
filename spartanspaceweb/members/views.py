@@ -1,7 +1,6 @@
-from django.urls import reverse_lazy, path
+from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import UserChangeForm
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
