@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CampusBoard — School Events Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0f0808;
+  --surface: #1a0e0e;
+  --surface2: #221414;
+  --border: #3a1f1f;
+  --text: #f5efef;
+  --muted: #8a6e6e;
+  --accent: #e82c2c;
+  --accent-bright: #ff4444;
+  --accent-glow: rgba(232,44,44,0.18);
+  --accent2: #ff7043;
+  --accent3: #ff9a9a;
+  --accent4: #c94040;
+  --accent5: #ff6b6b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  cursor: default;
+}
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none; z-index: 1000;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(15,8,8,0.93);
+  border-bottom: 1px solid #3a1f1f;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.06em;
+  color: var(--accent-bright);
+  text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.logo span { color: var(--text); }
+
+.nav-links {
+  display: flex; gap: 6px; align-items: center;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); background: var(--surface2); }
+
+.btn-post {
+  background: var(--accent);
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  padding: 7px 18px !important;
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.btn-post:hover { background: var(--accent-bright) !important; transform: translateY(-1px); box-shadow: 0 0 22px rgba(255,68,68,0.35) !important; }
+
+/* ── HERO ── */
+.hero {
+  padding: 70px 32px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 5px 14px 5px 6px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent3);
+  margin-bottom: 20px;
+}
+
+.hero-tag .dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 6px var(--accent);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 8vw, 96px);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+}
+
+.hero h1 .line2 { color: var(--accent); }
+
+.hero-sub {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 420px;
+  font-weight: 300;
+}
+
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.stat {
+  text-align: right;
+}
+
+.stat .num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.stat .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* ── FILTERS ── */
+.filter-bar {
+  max-width: 1200px;
+  margin: 0 auto 36px;
+  padding: 0 32px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-right: 6px;
+}
+
+.filter-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.filter-chip:hover, .filter-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* ── GRID ── */
+.events-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+/* ── EVENT CARD ── */
+.event-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardIn 0.45s ease forwards;
+}
+
+@keyframes cardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  border-color: #5a2a2a;
+  box-shadow: 0 20px 60px rgba(180,20,20,0.25);
+}
+
+.event-card:nth-child(1) { animation-delay: 0.05s; }
+.event-card:nth-child(2) { animation-delay: 0.10s; }
+.event-card:nth-child(3) { animation-delay: 0.15s; }
+.event-card:nth-child(4) { animation-delay: 0.20s; }
+.event-card:nth-child(5) { animation-delay: 0.25s; }
+.event-card:nth-child(6) { animation-delay: 0.30s; }
+.event-card:nth-child(7) { animation-delay: 0.35s; }
+.event-card:nth-child(8) { animation-delay: 0.40s; }
+
+.card-banner {
+  height: 7px;
+}
+
+.card-body {
+  padding: 20px 22px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.org-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid currentColor;
+}
+
+.date-chip {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.card-org {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent3);
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.card-location {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rsvp-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+
+.rsvp-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* FEATURED CARD — large */
+.event-card.featured {
+  grid-column: span 2;
+}
+
+.event-card.featured .card-title {
+  font-size: 26px;
+}
+
+@media (max-width: 700px) {
+  .event-card.featured { grid-column: span 1; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: row; align-items: flex-start; }
+  .events-grid { padding: 0 16px 60px; }
+  nav { padding: 0 16px; }
+  .hero { padding: 40px 16px 30px; }
+  .filter-bar { padding: 0 16px; }
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 520px;
+  padding: 32px;
+  transform: scale(0.96) translateY(12px);
+  transition: transform 0.25s;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-overlay.open .modal { transform: scale(1) translateY(0); }
+
+.modal h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.modal h2 span { color: var(--accent-bright); }
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-row label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: none;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-row select option { background: var(--surface2); }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btn-cancel {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 11px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-cancel:hover { color: var(--text); border-color: #5a2a2a; }
+
+.btn-submit {
+  flex: 2;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 11px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.btn-submit:hover { background: var(--accent-bright); transform: translateY(-1px); box-shadow: 0 0 22px rgba(255,68,68,0.4); }
+
+/* Color picker row */
+.color-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.color-swatch {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.color-swatch.selected,
+.color-swatch:hover { border-color: #fff; transform: scale(1.15); }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  z-index: 900;
+  transform: translateY(60px);
+  box-shadow: 0 0 20px var(--accent-glow);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Empty state */
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--muted);
+}
+
+.empty-state .big { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--border); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Campus<span>Board</span></div>
+  <div class="nav-links">
+    <a href="#">Discover</a>
+    <a href="#">Organizations</a>
+    <a href="#">Calendar</a>
+    <a href="#" class="btn-post" onclick="openModal(); return false;">+ Post Event</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-tag"><span class="dot"></span> Live · School Year 2025–2026</div>
+    <h1>WHAT'S <br><span class="line2">HAPPENING</span><br>ON CAMPUS</h1>
+    <p class="hero-sub">Discover events from every org, club, and department — all in one place. Never miss a thing.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="num" style="color:var(--accent-bright)" id="eventCount">8</div>
+      <div class="label">Events This Week</div>
+    </div>
+    <div class="stat">
+      <div class="num" style="color:var(--accent3)">24</div>
+      <div class="label">Active Orgs</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="filter-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-chip active" data-filter="all">All Events</button>
+  <button class="filter-chip" data-filter="Academic">Academic</button>
+  <button class="filter-chip" data-filter="Cultural">Cultural</button>
+  <button class="filter-chip" data-filter="Sports">Sports</button>
+  <button class="filter-chip" data-filter="Social">Social</button>
+  <button class="filter-chip" data-filter="Tech">Tech</button>
+  <button class="filter-chip" data-filter="Arts">Arts</button>
+</div>
+
+<!-- EVENTS GRID -->
+<div class="events-grid" id="eventsGrid"></div>
+
+<!-- POST EVENT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h2>Post an <span>Event</span></h2>
+    <div class="form-row">
+      <label>Event Title</label>
+      <input type="text" id="f-title" placeholder="e.g. Annual Leadership Summit"/>
+    </div>
+    <div class="form-row">
+      <label>Organization Name</label>
+      <input type="text" id="f-org" placeholder="e.g. Junior Philippine Institute of Accountants"/>
+    </div>
+    <div class="form-row">
+      <label>Description</label>
+      <textarea id="f-desc" rows="3" placeholder="What's this event about?"></textarea>
+    </div>
+    <div class="form-grid">
+      <div class="form-row">
+        <label>Date</label>
+        <input type="date" id="f-date"/>
+      </div>
+      <div class="form-row">
+        <label>Time</label>
+        <input type="time" id="f-time"/>
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Venue / Location</label>
+      <input type="text" id="f-location" placeholder="e.g. AVR Building 3"/>
+    </div>
+    <div class="form-row">
+      <label>Category</label>
+      <select id="f-category">
+        <option value="Academic">Academic</option>
+        <option value="Cultural">Cultural</option>
+        <option value="Sports">Sports</option>
+        <option value="Social">Social</option>
+        <option value="Tech">Tech</option>
+        <option value="Arts">Arts</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Org Color</label>
+      <div class="color-row" id="colorRow">
+        <div class="color-swatch selected" style="background:#e82c2c" data-color="#e82c2c"></div>
+        <div class="color-swatch" style="background:#ff6b6b" data-color="#ff6b6b"></div>
+        <div class="color-swatch" style="background:#ff9a9a" data-color="#ff9a9a"></div>
+        <div class="color-swatch" style="background:#c94040" data-color="#c94040"></div>
+        <div class="color-swatch" style="background:#ff7043" data-color="#ff7043"></div>
+        <div class="color-swatch" style="background:#ffd0d0" data-color="#ffd0d0"></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-submit" onclick="submitEvent()">Publish Event →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Event published successfully!</div>
+
+<script>
+const COLORS = {
+  '#f5c842': '#f5c842', '#ff5c3a': '#ff5c3a', '#4af0b0': '#4af0b0',
+  '#c07ef8': '#c07ef8', '#5bb8ff': '#5bb8ff', '#ff8fca': '#ff8fca'
+};
+
+let selectedColor = '#e82c2c';
+let activeFilter = 'all';
+
+const seedEvents = [
+  {
+    id: 1, featured: true,
+    title: 'Leadership & Innovation Summit 2026',
+    org: 'Student Government Association', category: 'Academic',
+    date: 'Mar 18, 2026', time: '8:00 AM', location: 'Main Auditorium',
+    desc: 'A full-day summit featuring keynote speakers, panel discussions, and workshops on leadership, innovation, and social impact. Open to all students.',
+    color: '#e82c2c'
+  },
+  {
+    id: 2, featured: false,
+    title: 'Coding Bootcamp: Web Dev 101',
+    org: 'CS Guild', category: 'Tech',
+    date: 'Mar 20, 2026', time: '2:00 PM', location: 'ICT Lab 4',
+    desc: 'Hands-on intro to HTML, CSS, and JavaScript. Bring your laptop — no prior experience needed!',
+    color: '#ff9a9a'
+  },
+  {
+    id: 3,
+    title: 'Cultural Night: Sayaw Pilipino',
+    org: 'Buwan ng Wika Club', category: 'Cultural',
+    date: 'Mar 21, 2026', time: '6:00 PM', location: 'Open Court',
+    desc: 'A celebration of Filipino folk dances, traditional costumes, and cultural performances by student artists.',
+    color: '#ffd0d0'
+  },
+  {
+    id: 4,
+    title: 'Intramurals Basketball Finals',
+    org: 'Department of Physical Education', category: 'Sports',
+    date: 'Mar 22, 2026', time: '3:00 PM', location: 'Gymnasium B',
+    desc: 'The championship match of the inter-college basketball tournament. Come cheer for your college!',
+    color: '#ff7043'
+  },
+  {
+    id: 5,
+    title: 'Campus Art Exhibit: Fragments',
+    org: 'Fine Arts Society', category: 'Arts',
+    date: 'Mar 24–28, 2026', time: 'All Day', location: 'Gallery Hall, Bldg 1',
+    desc: 'A week-long exhibit showcasing student artwork exploring the theme of fragmentation — identity, memory, and form.',
+    color: '#ff6b6b'
+  },
+  {
+    id: 6,
+    title: 'General Assembly + Org Fair',
+    org: 'Office of Student Affairs', category: 'Social',
+    date: 'Mar 25, 2026', time: '9:00 AM', location: 'Quadrangle',
+    desc: 'Meet all active school organizations, learn what they do, and sign up for the ones that spark your interest!',
+    color: '#c94040'
+  },
+  {
+    id: 7,
+    title: 'Research Paper Writing Workshop',
+    org: 'JPIAN — Accountancy Org', category: 'Academic',
+    date: 'Mar 26, 2026', time: '1:00 PM', location: 'AVR Room 202',
+    desc: 'Learn how to structure, cite, and defend academic research papers. Guest speaker: Prof. Maribel Santos.',
+    color: '#e82c2c'
+  },
+  {
+    id: 8,
+    title: 'Game Dev Hackathon',
+    org: 'CS Guild', category: 'Tech',
+    date: 'Mar 29, 2026', time: '7:00 AM', location: 'ICT Lab 1–3',
+    desc: '24-hour game development challenge. Form teams of 3–5, build a game from scratch, and compete for prizes.',
+    color: '#ff9a9a'
+  }
+];
+
+let events = [...seedEvents];
+
+function formatDate(d) {
+  if (!d) return '';
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function renderEvents() {
+  const grid = document.getElementById('eventsGrid');
+  const filtered = activeFilter === 'all' ? events : events.filter(e => e.category === activeFilter);
+  grid.innerHTML = '';
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><div class="big">NO EVENTS</div><p>No events found for this category yet.<br>Be the first to post one!</p></div>`;
+    return;
+  }
+  filtered.forEach((ev, i) => {
+    const card = document.createElement('div');
+    card.className = 'event-card' + (ev.featured ? ' featured' : '');
+    card.style.animationDelay = (i * 0.05) + 's';
+    card.innerHTML = `
+      <div class="card-banner" style="background:${ev.color}"></div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="org-badge" style="color:${ev.color};border-color:${ev.color}20;background:${ev.color}15">${ev.category}</span>
+          <span class="date-chip">${ev.date}</span>
+        </div>
+        <div class="card-title">${ev.title}</div>
+        <div class="card-org">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          ${ev.org}
+        </div>
+        <div class="card-desc">${ev.desc}</div>
+        <div class="card-footer">
+          <span class="card-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ${ev.location} · ${ev.time}
+          </span>
+          <button class="rsvp-btn" onclick="rsvp(this)">RSVP</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  document.getElementById('eventCount').textContent = filtered.length;
+}
+
+function rsvp(btn) {
+  if (btn.textContent === 'RSVP') {
+    btn.textContent = '✓ Going';
+    btn.style.background = 'var(--accent3)';
+    btn.style.borderColor = 'var(--accent3)';
+    btn.style.color = '#000';
+  } else {
+    btn.textContent = 'RSVP';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+  }
+}
+
+// Filters
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.filter;
+    renderEvents();
+  });
+});
+
+// Color swatches
+document.querySelectorAll('.color-swatch').forEach(sw => {
+  sw.addEventListener('click', () => {
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+    sw.classList.add('selected');
+    selectedColor = sw.dataset.color;
+  });
+});
+
+// Modal
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  // set today as default date
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('f-date').value = today;
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function submitEvent() {
+  const title = document.getElementById('f-title').value.trim();
+  const org = document.getElementById('f-org').value.trim();
+  const desc = document.getElementById('f-desc').value.trim();
+  const date = document.getElementById('f-date').value;
+  const time = document.getElementById('f-time').value;
+  const location = document.getElementById('f-location').value.trim();
+  const category = document.getElementById('f-category').value;
+
+  if (!title || !org || !date || !location) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  const newEvent = {
+    id: Date.now(),
+    featured: false,
+    title, org, category,
+    date: formatDate(date),
+    time: time || 'TBA',
+    location: location,
+    desc: desc || 'No description provided.',
+    color: selectedColor
+  };
+
+  events.unshift(newEvent);
+  closeModal();
+  renderEvents();
+  showToast();
+
+  // Reset form
+  ['f-title','f-org','f-desc','f-date','f-time','f-location'].forEach(id => document.getElementById(id).value = '');
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+renderEvents();
+</script>
+</body>
+</html>

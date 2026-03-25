@@ -1,67 +1,59 @@
-body {
-    margin: 0; /* Remove default margin */
+@import url(styles.css);
+
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(15,8,8,0.93);
+  border-bottom: 1px solid #3a1f1f;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
 }
 
-.navbar_body {
-    background-color: #b04d4d; /* Light gray background */
-    padding: 10px 0; /* Padding for the navbar */
-    border-radius: 20px; /* Round the corners of the navbar */
-    margin: 10px; /* Optional: Space around the navbar */
-    overflow: hidden; /* Ensure no child elements overflow */
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.03em;
+  color: var(--accent-bright);
+  text-shadow: 0 0 20px var(--accent-glow);
 }
 
-.navbar {
-    display: flex; /* Use flexbox for horizontal layout */
-    justify-content: center; /* Center the items */
+.logo span { color: var(--text); }
+
+.nav-links {
+  display: flex; gap: 6px; align-items: center;
 }
 
-.navbar ul {
-    list-style: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-    display: flex; /* Display items in a row */
+.nav-links a {
+  color: var(--nav);
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 0.2s;
 }
 
-.navbar li {
-    margin: 0 15px; /* Space between items */
+.nav-links a:hover { color: var(--text); background: var(--surface2); }
+
+.nav-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--nav);
+  padding: 6px 18px 7.5px 18px;
+  border-radius: 90px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
 }
 
-.navbar-link {
-    text-decoration: none; /* Remove underline from links */
-    color: #e3e3e3; /* Dark text color */
-    font-weight: bold; /* Bold text */
-    font-size: 16px; /* Set font size for navbar links */
-    transition: color 0.3s; /* Smooth color transition */
+.nav-btn:hover, .nav-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 12px var(--accent-glow);
 }
-
-.navbar-link:hover {
-    color: #622828; /* Change color on hover */
-}
-
-/* Consistent styling for the logout button */
-.logout-button {
-    background: none; /* Remove button background */
-    border: none; /* Remove button border */
-    color: #e3e3e3; /* Match link color */
-    font-weight: bold; /* Bold text */
-    font-size: 16px; /* Set font size to match navbar links */
-    cursor: pointer; /* Change cursor to pointer */
-    padding: 0; /* Remove padding */
-    text-decoration: none; /* Remove underline */
-    transition: color 0.3s; /* Smooth color transition */
-}
-
-.logout-button:hover {
-    color: #622828; /* Change color on hover */
-}
-
-/* Optionally, add a margin to separate logout button from other links */
-.logout-button {
-    margin-left: 15px; /* Adjust margin if needed */
-}
-
-/* Optional: Add border radius to individual items if needed */
-.navbar li {
-    border-radius: 12px; /* Rounded corners for list items */
-}
-

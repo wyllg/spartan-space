@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
+from django.contrib.auth.forms import UserChangeForm
 
 # Views to render the database to html files
 
@@ -23,7 +24,9 @@ class UserLoginView(LoginView):
         return super().get_success_url()  # Fallback if not authenticated
 
 class UserProfileView(generic.TemplateView):
+    form_class = UserChangeForm
     template_name = 'registration/profile.html'
+    success_url = reverse_lazy('profile')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
